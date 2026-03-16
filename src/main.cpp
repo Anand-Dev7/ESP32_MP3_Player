@@ -65,6 +65,8 @@ void loadSongList() {
   totalSongs = songList.size();
 }
 
+bool wifiKilled = false; // Global variable
+
 // --- FIXED: COMPLETELY NON-BLOCKING TIME ---
 String getClockTime() {
   time_t now;
@@ -74,12 +76,22 @@ String getClockTime() {
 
   // If year is > 70, it means the clock has been synced via NTP
   if (timeinfo.tm_year > 70) {
+    // TIME IS SYNCED! Now kill WiFi to stop the noise
+    if (!wifiKilled) {
+      WiFi.disconnect(true);
+      WiFi.mode(WIFI_OFF);
+      wifiKilled = true;
+      Serial.println("WiFi OFF - Noise Reduced");
+    }
     char buf[12];
     strftime(buf, sizeof(buf), "%I:%M %p", &timeinfo);
     return String(buf);
   }
   
-  if (millis() - deviceStartTime > SYNC_TIMEOUT) return "   "; // Show nothing after timeout
+  if (millis() - deviceStartTime > SYNC_TIMEOUT) {
+    if(!wifiKilled) { WiFi.mode(WIFI_OFF); wifiKilled = true; } // Stop trying if timeout
+    return "..."; // Show nothing after timeout
+  }
   return "Syncing..";
 }
 
@@ -175,7 +187,7 @@ void setup() {
   Serial.begin(115200);
   deviceStartTime = millis(); 
   Wire.begin(21, 22);
-  Wire.setClock(400000); 
+  Wire.setClock(100000); 
   display.begin(SH1106_SWITCHCAPVCC, 0x3C);
   display.clearDisplay();
   display.setTextColor(WHITE);
