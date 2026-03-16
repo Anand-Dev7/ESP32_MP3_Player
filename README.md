@@ -2,6 +2,7 @@
 An MP3 player build with Esp32 Dev Board, 1.96 inch oled display, UDA1334A DAC, and SD card reader module 
 
 ------------------------------- Pin Layout ------------------------------------- 
+
 Here is the exact pin layout for your ESP32 MP3 Player.
 1. 1.3" OLED Display (I2C Interface)
 The SH1106 OLED uses the I2C protocol.
