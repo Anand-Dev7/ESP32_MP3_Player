@@ -26,6 +26,7 @@ This module converts the digital signal from the ESP32 into high-quality analog 
 
 Note: for Ground(GND) you need to use a dedicated GND connection from ESP32, Don't use common ground.
 Here i have used 5V
+if you have any noise while song is playing you can Add a 100uF or 220uF Electrolytic Capacitor across the VIN and GND pins of your UDA1334A DAC.
 
 3. SD Card Reader Module (SPI Interface)
 The SD card holds your MP3 files. Note that standard hardware SPI pins are used.
