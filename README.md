@@ -2,6 +2,7 @@
 An MP3 player build with Esp32 Dev Board, 1.96 inch oled display, UDA1334A DAC, and SD card reader module 
 
 ------------------------------- Pin Layout ------------------------------------- 
+
 Here is the exact pin layout for your ESP32 MP3 Player.
 1. 1.3" OLED Display (I2C Interface)
 The SH1106 OLED uses the I2C protocol.
@@ -25,6 +26,8 @@ This module converts the digital signal from the ESP32 into high-quality analog 
 | DIN (DATA)   | GPIO 32    | Data Out                  |
 
 Note: for Ground(GND) you need to use a dedicated GND connection from ESP32, Don't use common ground.
+Here i have used 5V
+if you have any noise while song is playing you can Add a 100uF or 220uF Electrolytic Capacitor across the VIN and GND pins of your UDA1334A DAC.
 
 3. SD Card Reader Module (SPI Interface)
 The SD card holds your MP3 files. Note that standard hardware SPI pins are used.
@@ -37,6 +40,7 @@ The SD card holds your MP3 files. Note that standard hardware SPI pins are used.
 | SCK           | GPIO 18   | Clock                  |
 | MOSI          | GPIO 23   | Data In                |
 | MISO          | GPIO 19   | Data Out               |
+
 Here i have used 3.3V
 
 4. Navigation Buttons
