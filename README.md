@@ -25,6 +25,7 @@ This module converts the digital signal from the ESP32 into high-quality analog 
 | DIN (DATA)   | GPIO 32    | Data Out                  |
 
 Note: for Ground(GND) you need to use a dedicated GND connection from ESP32, Don't use common ground.
+Here i have used 5V
 
 3. SD Card Reader Module (SPI Interface)
 The SD card holds your MP3 files. Note that standard hardware SPI pins are used.
@@ -37,6 +38,7 @@ The SD card holds your MP3 files. Note that standard hardware SPI pins are used.
 | SCK           | GPIO 18   | Clock                  |
 | MOSI          | GPIO 23   | Data In                |
 | MISO          | GPIO 19   | Data Out               |
+
 Here i have used 3.3V
 
 4. Navigation Buttons
